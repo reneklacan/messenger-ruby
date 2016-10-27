@@ -17,7 +17,7 @@ module Messenger
     private
 
     def build_entries
-      params['entry'].map { |entry| Parameters::Entry.new(entry.symbolize_keys) }
+      params['entry'].map { |entry| Parameters::Entry.new(entry.transform_keys(&:to_sym)) }
     end
   end
 end

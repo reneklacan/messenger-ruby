@@ -17,7 +17,7 @@ module Messenger
       end
 
       def build_attachments(attachments)
-        attachments.map { |attachment| Attachment.new(attachment.symbolize_keys.slice(:type, :payload)) }
+        attachments.map { |attachment| Attachment.new(attachment.transform_keys(&:to_sym).slice(:type, :payload)) }
       end
     end
   end
