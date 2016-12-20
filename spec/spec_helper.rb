@@ -1,5 +1,5 @@
 require 'messenger-ruby'
-require "codeclimate-test-reporter"
+require 'simplecov'
 
 ENV["RAILS_ENV"] ||= 'test'
 
@@ -10,7 +10,6 @@ require 'webmock/rspec'
 
 WebMock.disable_net_connect!(:allow => "codeclimate.com")
 
-CodeClimate::TestReporter.start
 SimpleCov.start
 
 RSpec.configure do |config|
