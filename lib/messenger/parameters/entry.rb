@@ -10,7 +10,7 @@ module Messenger
       end
 
       def build_messagings(messagings)
-        messagings.map { |messaging| Messaging.new(messaging.symbolize_keys) }
+        messagings.map { |messaging| Messaging.new(messaging.transform_keys(&:to_sym)) }
       end
     end
   end

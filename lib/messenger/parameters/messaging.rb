@@ -11,7 +11,7 @@ module Messenger
 
       def set_callback(callbacks)
         type = callbacks.select { |_, v| v.present? }.keys.first
-        @callback = constant(type).new(callbacks[type].symbolize_keys)
+        @callback = constant(type).new(callbacks[type].transform_keys(&:to_sym))
       end
 
       private
