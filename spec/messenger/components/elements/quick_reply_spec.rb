@@ -16,7 +16,7 @@ module Messenger
       let(:location_quick_reply) { described_class.new(content_type: 'location') }
 
       describe '#build' do
-        describe 'text content type' do
+        context 'text content type' do
           it 'return hash with content_type, title, payload and image' do
             expect(text_quick_reply.build).to eq(
                                                   'content_type' => 'text',
@@ -27,7 +27,7 @@ module Messenger
           end
         end
 
-        describe 'location content type' do
+        context 'location content type' do
           it 'return hash with content_type' do
             expect(location_quick_reply.build).to eq('content_type' => 'location')
           end
