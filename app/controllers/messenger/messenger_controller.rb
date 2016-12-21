@@ -39,7 +39,7 @@ module Messenger
     end
 
     def fb_params
-      Params.new(params)
+      Params.new(params.permit!)
     end
   end
 end
