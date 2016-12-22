@@ -3,7 +3,7 @@ module Messenger
     def initialize(component, recipient_id)
       @recipient_id = recipient_id
       @body = body
-      add_element(component)
+      create_request(component)
     end
 
     def build
@@ -11,14 +11,25 @@ module Messenger
     end
 
     def add_element(element)
-      @body[:message].merge! element.build
+      @body.merge!({ message: element.build })
+    end
+
+    def add_sender_action(action)
+      @body.merge!(action.build)
     end
 
     def body
       {
-        recipient: { id: @recipient_id },
-        message: {}
+        recipient: { id: @recipient_id }
       }
+    end
+
+    def create_request(component)
+      if component.is_a? Elements::SenderAction
+        add_sender_action(component)
+      else
+        add_element(component)
+      end
     end
   end
 end

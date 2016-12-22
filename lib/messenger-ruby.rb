@@ -27,6 +27,7 @@ require "messenger/components/elements/image"
 require "messenger/components/elements/button"
 require "messenger/components/elements/bubble"
 require "messenger/components/elements/quick_reply"
+require "messenger/components/elements/sender_action"
 
 require "messenger/parameters/attachment"
 require "messenger/parameters/callback"
