@@ -30,6 +30,7 @@ require "messenger/components/elements/quick_reply"
 require "messenger/components/elements/sender_action"
 
 require "messenger/parameters/attachment"
+require "messenger/parameters/quick_reply"
 require "messenger/parameters/callback"
 require "messenger/parameters/entry"
 require "messenger/parameters/messaging"
