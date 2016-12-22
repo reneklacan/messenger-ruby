@@ -17,7 +17,7 @@ module Messenger
     private
 
     def build_entries
-      params['entry'].map { |entry| Parameters::Entry.new(entry.to_unsafe_h.transform_keys(&:to_sym)) }
+      params['entry'].map { |entry| Parameters::Entry.new(entry.to_h.transform_keys(&:to_sym)) }
     end
   end
 end
