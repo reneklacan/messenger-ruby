@@ -40,19 +40,45 @@ module Messenger
 
     def fb_params
       safe_params = params.permit(:object,
-                                  entry: [:id, :time,
-                                          messaging: [{ sender: :id }, :timestamp, { recipient: :id },
-                                                      message:
-                                                          [:mid, :seq, { sticker: :id }, :text,
-                                                           { attachments: [ :type, :url, { coordinates: :lat }, { coordinates: :long }] },
-                                                           { quick_reply: :payload },
-                                                           :is_echo, { app: :id }, :metadata],
-                                          read: [:watermark, :seq],
-                                          postback: :payload,
-                                          optin: :ref,
-                                          delivery: [{ mids: [] }, :watermark, :seq],
-                                          account_linking: [:status, :authorization_code]
-                                        ]])
+                                  entry: [
+                                      :id,
+                                      :time,
+                                      messaging: [
+                                        { sender: :id },
+                                        :timestamp,
+                                        { recipient: :id },
+                                        message:
+                                          [
+                                            :mid,
+                                            :seq,
+                                            { sticker: :id },
+                                            :text,
+                                            { attachments: [
+                                                :type,
+                                                :url,
+                                                { coordinates: :lat },
+                                                { coordinates: :long }
+                                            ] },
+                                            { quick_reply: :payload },
+                                            :is_echo,
+                                            { app: :id },
+                                            :metadata
+                                          ],
+                                        read: [
+                                            :watermark,
+                                            :seq
+                                        ],
+                                        postback: :payload,
+                                        optin: :ref,
+                                        delivery: [
+                                          { mids: [] },
+                                          :watermark,
+                                          :seq
+                                        ],
+                                        account_linking: [
+                                          :status, :authorization_code
+                                        ]
+                                      ]])
       Params.new(safe_params)
     end
   end
