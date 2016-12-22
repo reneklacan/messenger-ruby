@@ -54,10 +54,10 @@ module Messenger
                                             { sticker: :id },
                                             :text,
                                             { attachments: [
-                                                :type,
-                                                :url,
-                                                { coordinates: :lat },
-                                                { coordinates: :long }
+                                              :type,
+                                              :url,
+                                              { coordinates: :lat },
+                                              { coordinates: :long }
                                             ] },
                                             { quick_reply: :payload },
                                             :is_echo,
@@ -65,8 +65,8 @@ module Messenger
                                             :metadata
                                           ],
                                         read: [
-                                            :watermark,
-                                            :seq
+                                          :watermark,
+                                          :seq
                                         ],
                                         postback: :payload,
                                         optin: :ref,
