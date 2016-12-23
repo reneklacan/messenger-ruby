@@ -1,6 +1,7 @@
 # messenger-ruby
 [![](https://img.shields.io/gem/v/messenger-ruby.svg?style=flat-square)](https://rubygems.org/gems/messenger-ruby)
 [![](https://img.shields.io/circleci/project/netguru/messenger-ruby.svg?style=flat-square)](https://circleci.com/gh/netguru/messenger-ruby)
+[![codebeat badge](https://codebeat.co/badges/9e5fcfd6-dc77-4a0b-a355-0c6cdd6d1f14)](https://codebeat.co/projects/github-com-netguru-messenger-ruby)
 
 A simple library for supporting implementation of [Facebook Messenger Bot](https://developers.facebook.com/products/messenger/) in Ruby on Rails.
 
