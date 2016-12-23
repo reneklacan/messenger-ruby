@@ -34,6 +34,12 @@ module Messenger
       end
     end
 
+    describe '#first_messaging' do
+      it 'returns Messaging object' do
+        expect(subject.first_messaging).to be_a(Parameters::Messaging)
+      end
+    end
+
     describe '#new' do
       it 'assigns raw params to params attribute' do
         expect(subject.params).to eq(params)
