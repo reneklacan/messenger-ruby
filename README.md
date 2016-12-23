@@ -1,10 +1,13 @@
 # messenger-ruby
 [![](https://img.shields.io/gem/v/messenger-ruby.svg?style=flat-square)](https://rubygems.org/gems/messenger-ruby)
 [![](https://img.shields.io/circleci/project/netguru/messenger-ruby.svg?style=flat-square)](https://circleci.com/gh/netguru/messenger-ruby)
-[![Code Climate](https://codeclimate.com/repos/571f619474664d1dff007ae0/badges/77203f4d34a36b976a2b/gpa.svg)](https://codeclimate.com/repos/571f619474664d1dff007ae0/feed)
-[![Test Coverage](https://codeclimate.com/repos/571f619474664d1dff007ae0/badges/77203f4d34a36b976a2b/coverage.svg)](https://codeclimate.com/repos/571f619474664d1dff007ae0/coverage)
+[![codebeat badge](https://codebeat.co/badges/9e5fcfd6-dc77-4a0b-a355-0c6cdd6d1f14)](https://codebeat.co/projects/github-com-netguru-messenger-ruby)
 
 A simple library for supporting implementation of [Facebook Messenger Bot](https://developers.facebook.com/products/messenger/) in Ruby on Rails.
+
+## Requirments
+
+ruby 2.1+
 
 ## Installation
 
@@ -141,6 +144,26 @@ Example usage:
 ```ruby
 Messenger::Elements::Bubble.new(title: 'First', subtitle: 'Bubble')
 
+```
+
+#### Quick Reply
+
+Used by [Quick Replies](#quick-replies).
+
+Attribute | Allowed values | Required?
+--------- | -------------- | :--------:
+content_type | 'text' or 'location' | &#10004;
+title | String | only if content_type is 'text'
+payload | String | only if content_type is 'text'
+image_url | String | &#10008;
+
+Example usage:
+```ruby
+    Messenger::Elements::QuickReply.new(
+            content_type: 'text',
+            title: 'SomeTitle',
+            payload: "PAYLOAD"
+          )
 ```
 
 #### Address
@@ -292,6 +315,57 @@ Messenger::Client.send(
 ...
 ```
 
+#### Sender Actions
+
+Attribute | Allowed values | Required?
+--------- | -------------- | :--------:
+sender_action | 'typing_on', 'typing_off' or 'mark_seen' | &#10004;
+
+Sending send action:
+```ruby
+...
+Messenger::Client.send(
+    Messenger::Request.new(
+        Messenger::Elements::SenderAction.new(sender_action: 'mark_seen'),
+        fb_params.first_entry.sender_id
+    )
+)
+...
+```
+
+#### Quick Replies
+
+Attribute | Allowed values | Required?
+--------- | -------------- | :--------:
+text | String | attachment or text must be set
+attachment | Attachment object | attachment or text must be set
+quick_reply | Array of [Messenger::Elements::QuickReply](#quick_reply) objects| &#10008;
+
+Example usage
+```ruby
+
+    #define quick_replies here...
+    quick_replies = Messenger::Templates::QuickReplies.new(
+      text: "Green or Red?",
+      quick_replies: [
+          Messenger::Elements::QuickReply.new(
+            content_type: 'text',
+            title: 'Green',
+            payload: 'GREEN'
+          ),
+          Messenger::Elements::QuickReply.new(
+              content_type: 'text',
+              title: 'Red',
+              payload: "RED"
+          )
+      ]
+    )
+    
+    #now send quick_replies to the user
+    Messenger::Client.send(
+      Messenger::Request.new(quick_replies, fb_params.first_entry.sender_id)
+    )
+```
 #### Generic template
 
 Attribute | Allowed values | Required?
@@ -480,7 +554,8 @@ mid |
 seq |
 sticker_id |
 text |
-attachments | Array of [Messenger::Parameters::Attachment](#attachment) objects
+
+s | Array of [Messenger::Parameters::Attachment](#attachment) objects
 is_echo |
 app_id |
 metadata |
