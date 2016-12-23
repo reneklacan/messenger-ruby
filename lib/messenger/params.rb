@@ -14,6 +14,8 @@ module Messenger
       entries[0].messagings[0]
     end
 
+    alias_method :first_messaging, :first_entry
+
     private
 
     def build_entries
