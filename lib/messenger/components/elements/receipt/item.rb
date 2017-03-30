@@ -5,7 +5,7 @@ module Messenger
     class Item
       include Components::Element
 
-      attr_accessor :title, :subtitle, :quantity, :price, :urrency, :image_url
+      attr_accessor :title, :subtitle, :quantity, :price, :currency, :image_url
 
       def initialize(title:, subtitle: nil, quantity: nil, price: nil, currency: nil, image_url: nil)
         @title     = title
