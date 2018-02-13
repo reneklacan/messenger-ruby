@@ -1,3 +1,5 @@
+require "rest-client"
+
 require "messenger/version"
 require "messenger/configuration"
 

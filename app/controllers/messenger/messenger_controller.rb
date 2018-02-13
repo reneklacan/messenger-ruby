@@ -1,5 +1,3 @@
-require 'rest-client'
-
 module Messenger
   class MessengerController < ActionController::Base
     def validate
